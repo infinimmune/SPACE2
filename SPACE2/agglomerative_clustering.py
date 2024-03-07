@@ -13,6 +13,6 @@ def agglomerative_clustering(files, selection=reg_def["CDR_all"], anchors=reg_de
     :return:
     """
     clustering_algorithm = AgglomerativeClustering(n_clusters=None, metric='precomputed', distance_threshold=cutoff, linkage='complete')
-    final_clustering = cluster_with_algorithm(clustering_algorithm, files, selection=selection, anchors=anchors, n_jobs=n_jobs)
+    matrices_dict, final_clustering = cluster_with_algorithm(clustering_algorithm, files, selection=selection, anchors=anchors, n_jobs=n_jobs)
     
     return final_clustering

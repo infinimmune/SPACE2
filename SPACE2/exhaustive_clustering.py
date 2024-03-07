@@ -142,10 +142,10 @@ def cluster_with_algorithm(method, files, selection=reg_def["CDR_all"], anchors=
 
     :param method: initialised clustering method, the method should be consistent with sklearn API
     :param files: list of antibody pdb files. These will be used to identify each antibody
-    :return: pandas dataframe with columns ID, cluster_by_length, cluster_by_rmsd, matrix_index
+    :return: distance_matrix_dict, pandas dataframe with columns ID, cluster_by_length, cluster_by_rmsd, matrix_index
     """
     matrices_dict = get_distance_matrices(files, selection=selection, anchors=anchors, n_jobs=n_jobs)
     meta_data, rmsd_matrices = matrices_to_pandas_list(matrices_dict)
     cluster_labels = cluster_martices(rmsd_matrices, method, n_jobs=n_jobs)
 
-    return get_clustering(meta_data, cluster_labels)
+    return matrices_dict, get_clustering(meta_data, cluster_labels)
